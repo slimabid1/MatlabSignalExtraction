@@ -1,3 +1,5 @@
+function [br_cyc] = signal_extraction_test(vid_path)
+
 clc;    % Clear the command window.
 close all;  % Close all figures (except those of imtool.)
 imtool close all;  % Close all imtool figures.
@@ -9,11 +11,11 @@ order = 40; %utilisé dans le filtre passe bas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%Partie réservée à l'aquisition de la vidéo%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-vid_path = 'C:/Users/slabid/Desktop/Code_and_Dataset/Matlab_Signal_Extraction/FLIROne/trials/1.mp4';
+%vid_path = 'C:/Users/slabid/Desktop/Code_and_Dataset/Matlab_Signal_Extraction/FLIROne/trials/1.mp4';
 [folder, vid_name, ext] = fileparts(vid_path);
-% vid_cropped_path = crop_video(folder, vid_name, ext);
-% [vid_cropped_folder, vid_cropped_name, vid_cropped_ext] = fileparts(vid_cropped_path);
-% movieFullFileName = fullfile(folder,strcat(vid_cropped_name, vid_cropped_ext));
+vid_cropped_path = crop_video(folder, vid_name, ext);
+[vid_cropped_folder, vid_cropped_name, vid_cropped_ext] = fileparts(vid_cropped_path);
+movieFullFileName = fullfile(folder,strcat(vid_cropped_name, vid_cropped_ext));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%Original Video ==> to get the real duration for BPM calculation%%%
@@ -21,8 +23,8 @@ movieFullFileName0 = fullfile(folder,strcat(vid_name,ext));
 videoObject = VideoReader(movieFullFileName0);
 duration0 = videoObject.Duration;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-folder = 'C:/Users/slabid/Desktop/Code_and_Dataset/Matlab_Signal_Extraction/';
-movieFullFileName = fullfile(folder,'Cropped_1.mp4');
+% folder = 'C:/Users/slabid/Desktop/Code_and_Dataset/Matlab_Signal_Extraction/';
+% movieFullFileName = fullfile(folder,'Cropped_1.mp4');
 % Check to see that it exists.
 if ~exist(movieFullFileName, 'file')
 	strErrorMessage = sprintf('File not found:\n%s\nYou can choose a new one, or cancel', movieFullFileName);
